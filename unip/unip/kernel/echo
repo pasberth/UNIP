@@ -1,0 +1,7 @@
+#!/bin/sh
+
+read self
+while read a
+do
+  echo $a
+done
