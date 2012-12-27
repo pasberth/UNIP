@@ -1,0 +1,15 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use File::Spec;
+
+my @uniplib = split(/:/, "$ENV{'UNIPLIB'}");
+my $fname = $ARGV[0];
+foreach my $lib(@uniplib) {
+    my $absfname = File::Spec->catfile($lib, $fname);
+    if ( -x $absfname ) {
+        print $absfname;
+        exit 0;
+    }
+}

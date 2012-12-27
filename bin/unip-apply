@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+read f
+(echo $f; while read a; do echo $a; done) | $(unip-findf $(echo $f | unip-typeof)/apply)
