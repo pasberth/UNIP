@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+read self
+read msg
+
+echo hello
+
+( echo $msg
+; echo $self
+; while read a; do echo $a; done
+) | unip-apply

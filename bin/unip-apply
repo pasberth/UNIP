@@ -1,4 +1,22 @@
 #!/usr/bin/env sh
 
 read f
-(echo $f; while read a; do echo $a; done) | $(unip-findf $(echo $f | unip-typeof)/apply)
+
+type=$(echo $f | unip-typeof)
+apply1=$(unip-findf $type/apply)
+apply2=$(unip-findf $type/superclass/apply)
+apply3=$(unip-findf unip/obj/apply)
+
+function go () {
+  (echo $f; while read a; do echo $a; done) | $1
+}
+
+if [[ -x $apply1 ]]
+then
+  go $apply1
+elif [[ -x $apply2 ]]
+then
+  go $apply2
+else
+  go $apply3
+fi

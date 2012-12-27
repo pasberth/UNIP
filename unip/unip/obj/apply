@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+read self
+read msg
+
+if [ $(echo $msg | unip-typeof) = "unip/sym" ]
+then
+  msg="unip/sym $(echo $self | unip-typeof)/$(echo $msg | unip-entity)"
+  ( echo $msg; echo $self; while read a; do echo $a; done ) | unip-apply
+fi

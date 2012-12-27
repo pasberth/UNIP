@@ -13,3 +13,5 @@ foreach my $lib(@uniplib) {
         exit 0;
     }
 }
+
+exit 1;

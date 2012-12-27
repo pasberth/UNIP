@@ -1,4 +1,15 @@
 #!/usr/bin/env sh
 
 read self
-(echo unip/kernel .; while read a; do echo $a; done) | $(unip-findf $(echo $self | unip-entity))
+
+e=$(echo $self | unip-entity)
+f=$(unip-findf $e)
+tmp=$?
+
+if [ $tmp != 0 ]
+then
+  echo $0: $e not found. 1>&2
+  exit 1
+fi
+
+( echo unip/kernel .; while read a; do echo $a ; done ) | $f
